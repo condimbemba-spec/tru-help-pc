@@ -9,20 +9,19 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green:  #1a7a4a;
-      --gold:   #f5a623;
-      --dark:   #0d1f17;
-      --light:  #f4f9f6;
-      --white:  #ffffff;
-      --gray:   #6b7280;
-      --border: #d1fae5;
+      --blue:     #1a56db;
+      --blue-dark:#1035a0;
+      --sky:      #e8f0fe;
+      --accent:   #00c896;
+      --dark:     #0d1829;
+      --light:    #f0f5ff;
+      --white:    #ffffff;
+      --gray:     #6b7280;
+      --border:   #c7d9ff;
+      --red:      #e63946;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--dark);
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); }
 
     /* ── NAV ── */
     nav {
@@ -30,56 +29,74 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.2rem 2rem;
-      background: var(--dark);
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 12px rgba(26,86,219,0.08);
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-    }
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--gold);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-    }
-    .logo-text {
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: -0.5px;
-    }
-    .logo-text span { color: var(--gold); }
-    nav a.nav-cta {
-      background: var(--gold);
+    .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+    .logo-icon svg { width: 42px; height: 42px; }
+    .logo-text { font-size: 1.3rem; font-weight: 900; color: var(--dark); letter-spacing: -0.5px; }
+    .logo-text span { color: var(--blue); }
+
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a {
       color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    nav a.nav-cta {
+      background: var(--blue);
+      color: var(--white);
       font-weight: 700;
-      padding: 0.6rem 1.4rem;
+      padding: 0.65rem 1.4rem;
       border-radius: 8px;
       text-decoration: none;
       font-size: 0.9rem;
+      transition: background 0.2s;
     }
+    nav a.nav-cta:hover { background: var(--blue-dark); }
+
+    /* ── URGENT BANNER ── */
+    .urgent-banner {
+      background: var(--red);
+      color: white;
+      text-align: center;
+      padding: 0.7rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .urgent-banner a { color: white; text-decoration: underline; }
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, var(--dark) 0%, #0f3d26 100%);
+      background: linear-gradient(135deg, var(--dark) 0%, #0a2060 100%);
       color: var(--white);
       padding: 6rem 2rem 5rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(26,86,219,0.25) 0%, transparent 70%);
+      top: -100px; left: 50%; transform: translateX(-50%);
+      pointer-events: none;
     }
     .hero-badge {
       display: inline-block;
-      background: rgba(245,166,35,0.15);
-      color: var(--gold);
-      border: 1px solid var(--gold);
+      background: rgba(0,200,150,0.15);
+      color: var(--accent);
+      border: 1px solid var(--accent);
       border-radius: 50px;
       padding: 0.35rem 1rem;
       font-size: 0.8rem;
@@ -93,19 +110,22 @@
       font-weight: 900;
       line-height: 1.1;
       margin-bottom: 1.2rem;
+      position: relative;
     }
-    .hero h1 span { color: var(--gold); }
+    .hero h1 span { color: var(--accent); }
     .hero p {
       font-size: 1.15rem;
-      color: #a7c5b4;
-      max-width: 560px;
+      color: #8faed6;
+      max-width: 600px;
       margin: 0 auto 2.5rem;
-      line-height: 1.7;
+      line-height: 1.8;
+      position: relative;
     }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
     .hero-cta {
       display: inline-block;
-      background: var(--gold);
-      color: var(--dark);
+      background: var(--blue);
+      color: var(--white);
       font-weight: 800;
       font-size: 1.05rem;
       padding: 1rem 2.5rem;
@@ -113,14 +133,50 @@
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .hero-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245,166,35,0.4);
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,86,219,0.45); }
+    .hero-cta.outline {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.3);
+      color: var(--white);
     }
+    .hero-cta.outline:hover { background: rgba(255,255,255,0.08); box-shadow: none; }
 
-    /* ── IMPACT COUNTER ── */
+    .trust-bar {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding: 1.5rem 2rem 0;
+      position: relative;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #8faed6;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .trust-item span { color: var(--accent); font-size: 1rem; }
+
+    /* ── STORY STRIP ── */
+    .story-strip {
+      background: #fff8f0;
+      border-left: 5px solid var(--red);
+      padding: 2rem 2.5rem;
+      max-width: 860px;
+      margin: 3rem auto;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #333;
+    }
+    .story-strip strong { color: var(--red); }
+    .story-strip em { font-style: normal; font-weight: 700; color: var(--dark); }
+
+    /* ── IMPACT ── */
     .impact {
-      background: var(--green);
+      background: var(--blue);
       padding: 3rem 2rem;
       display: flex;
       justify-content: center;
@@ -128,18 +184,13 @@
       flex-wrap: wrap;
     }
     .impact-item { text-align: center; color: var(--white); }
-    .impact-num {
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: var(--gold);
-      display: block;
-    }
+    .impact-num { font-size: 2.8rem; font-weight: 900; color: var(--accent); display: block; }
     .impact-label { font-size: 0.9rem; opacity: 0.85; margin-top: 0.3rem; }
 
-    /* ── HOW IT WORKS ── */
+    /* ── HOW ── */
     .how { padding: 5rem 2rem; background: var(--light); text-align: center; }
     .section-tag {
-      color: var(--green);
+      color: var(--blue);
       font-weight: 700;
       font-size: 0.8rem;
       letter-spacing: 2px;
@@ -147,94 +198,170 @@
       margin-bottom: 0.8rem;
     }
     .how h2 { font-size: 2.2rem; font-weight: 900; margin-bottom: 3rem; }
-    .steps {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .steps { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
     .step {
       background: var(--white);
       border-radius: 16px;
       padding: 2rem 1.5rem;
-      flex: 1;
-      min-width: 220px;
-      max-width: 260px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-      position: relative;
+      flex: 1; min-width: 220px; max-width: 260px;
+      box-shadow: 0 2px 20px rgba(26,86,219,0.08);
+      border-top: 4px solid var(--blue);
     }
     .step-num {
-      width: 48px;
-      height: 48px;
-      background: var(--gold);
+      width: 48px; height: 48px;
+      background: var(--sky);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 1.2rem;
       margin: 0 auto 1rem;
-      color: var(--dark);
+      color: var(--blue);
     }
     .step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
     .step p { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
 
-    /* ── WHAT WE TAKE ── */
-    .what { padding: 4rem 2rem; text-align: center; }
-    .what h2 { font-size: 2rem; font-weight: 900; margin-bottom: 2.5rem; }
-    .items-grid {
+    /* ── EMOTIONAL CTA SECTION ── */
+    .emotion-section {
+      padding: 5rem 2rem;
+      background: var(--dark);
+      color: white;
+      text-align: center;
+    }
+    .emotion-section h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .emotion-section h2 span { color: var(--accent); }
+    .emotion-section p {
+      color: #8faed6;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.1rem;
+      line-height: 1.9;
+    }
+    .emotion-cards {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
-      max-width: 700px;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+    .emotion-card {
+      background: #0f2040;
+      border: 1px solid #1e3a6e;
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      flex: 1; min-width: 220px; max-width: 260px;
+      text-align: left;
+    }
+    .emotion-card .quote { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    .emotion-card p { font-size: 0.92rem; line-height: 1.7; color: #a0bce0; font-style: italic; }
+    .emotion-card .attr { font-style: normal; font-weight: 700; color: var(--accent); font-size: 0.8rem; margin-top: 0.8rem; display: block; }
+
+    /* ── TRUST SECTION ── */
+    .trust-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--white);
+    }
+    .trust-section h2 { font-size: 2rem; font-weight: 900; margin-bottom: 2.5rem; }
+    .trust-cards {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      max-width: 900px;
       margin: 0 auto;
     }
-    .item-chip {
+    .trust-card {
       background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      flex: 1; min-width: 200px; max-width: 220px;
+      text-align: center;
+    }
+    .trust-card .icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .trust-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--blue); }
+    .trust-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.5; }
+
+    /* ── WHAT WE TAKE ── */
+    .what { padding: 4rem 2rem; text-align: center; background: var(--light); }
+    .what h2 { font-size: 2rem; font-weight: 900; margin-bottom: 2.5rem; }
+    .items-grid { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; max-width: 700px; margin: 0 auto; }
+    .item-chip {
+      background: var(--white);
       border: 2px solid var(--border);
       border-radius: 50px;
       padding: 0.6rem 1.3rem;
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--green);
+      color: var(--blue);
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section {
+      padding: 5rem 2rem;
+      background: var(--white);
+      text-align: center;
+    }
+    .gallery-section h2 { font-size: 2rem; font-weight: 900; margin-bottom: 0.6rem; }
+    .gallery-section > p { color: var(--gray); margin-bottom: 2.5rem; font-size: 1rem; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 220px 220px;
+      gap: 12px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item.tall { grid-row: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(10,30,80,0.85));
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 1.2rem 1rem 0.8rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    @media (max-width: 640px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item.tall { grid-row: span 1; }
     }
 
     /* ── FORM ── */
-    .form-section {
-      background: var(--dark);
-      padding: 5rem 2rem;
-      color: var(--white);
-    }
-    .form-section .section-tag { color: var(--gold); }
-    .form-section h2 {
-      font-size: 2.2rem;
-      font-weight: 900;
-      margin-bottom: 0.6rem;
-      text-align: center;
-    }
-    .form-section > p {
-      text-align: center;
-      color: #a7c5b4;
-      margin-bottom: 3rem;
-      font-size: 1rem;
-    }
-    form {
-      max-width: 680px;
-      margin: 0 auto;
-      display: grid;
-      gap: 1.2rem;
-    }
+    .form-section { background: var(--dark); padding: 5rem 2rem; color: var(--white); }
+    .form-section .section-tag { color: var(--accent); text-align: center; }
+    .form-section h2 { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.6rem; text-align: center; }
+    .form-section > p { text-align: center; color: #8faed6; margin-bottom: 3rem; }
+
+    form { max-width: 680px; margin: 0 auto; display: grid; gap: 1.2rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
     @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
 
-    label { font-size: 0.85rem; font-weight: 600; color: #a7c5b4; display: block; margin-bottom: 0.4rem; }
+    label { font-size: 0.85rem; font-weight: 600; color: #8faed6; display: block; margin-bottom: 0.4rem; }
     input, select, textarea {
       width: 100%;
-      background: #1a3329;
-      border: 1px solid #2d5040;
+      background: #0f2040;
+      border: 1px solid #1e3a6e;
       border-radius: 10px;
       padding: 0.85rem 1rem;
       color: var(--white);
@@ -243,22 +370,16 @@
       outline: none;
       transition: border-color 0.2s;
     }
-    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
-    input::placeholder, textarea::placeholder { color: #4a7060; }
-    select option { background: #1a3329; }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+    input::placeholder, textarea::placeholder { color: #2a4a7a; }
+    select option { background: #0f2040; }
     textarea { resize: vertical; min-height: 100px; }
 
-    .checkbox-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
+    .checkbox-group { display: flex; flex-wrap: wrap; gap: 0.7rem; }
     .checkbox-group label {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: #1a3329;
-      border: 1px solid #2d5040;
+      display: flex; align-items: center; gap: 0.4rem;
+      background: #0f2040;
+      border: 1px solid #1e3a6e;
       border-radius: 8px;
       padding: 0.5rem 0.9rem;
       cursor: pointer;
@@ -267,32 +388,26 @@
       margin: 0;
       transition: border-color 0.2s;
     }
-    .checkbox-group label:hover { border-color: var(--gold); }
-    .checkbox-group input[type="checkbox"] {
-      width: auto;
-      background: none;
-      border: none;
-      padding: 0;
-      accent-color: var(--gold);
-    }
+    .checkbox-group label:hover { border-color: var(--accent); }
+    .checkbox-group input[type="checkbox"] { width: auto; background: none; border: none; padding: 0; accent-color: var(--accent); }
 
     .upload-area {
-      border: 2px dashed #2d5040;
+      border: 2px dashed #1e3a6e;
       border-radius: 12px;
       padding: 2rem;
       text-align: center;
       cursor: pointer;
       transition: border-color 0.2s;
     }
-    .upload-area:hover { border-color: var(--gold); }
-    .upload-area p { color: #4a7060; font-size: 0.9rem; margin-top: 0.5rem; }
+    .upload-area:hover { border-color: var(--accent); }
+    .upload-area p { color: #2a4a7a; font-size: 0.9rem; margin-top: 0.5rem; }
     .upload-area span { font-size: 2rem; }
     #file-input { display: none; }
-    #file-list { margin-top: 0.8rem; font-size: 0.8rem; color: var(--gold); }
+    #file-list { margin-top: 0.8rem; font-size: 0.8rem; color: var(--accent); }
 
     .submit-btn {
-      background: var(--gold);
-      color: var(--dark);
+      background: var(--blue);
+      color: var(--white);
       font-weight: 800;
       font-size: 1.05rem;
       padding: 1rem;
@@ -302,14 +417,10 @@
       transition: transform 0.2s, box-shadow 0.2s;
       margin-top: 0.5rem;
     }
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245,166,35,0.35);
-    }
-
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,86,219,0.4); }
     .success-msg {
       display: none;
-      background: var(--green);
+      background: var(--blue);
       border-radius: 12px;
       padding: 1.5rem;
       text-align: center;
@@ -319,86 +430,288 @@
     }
 
     /* ── MISSION ── */
-    .mission {
-      padding: 5rem 2rem;
-      text-align: center;
-      background: var(--light);
-    }
+    .mission { padding: 5rem 2rem; text-align: center; background: var(--white); }
     .mission h2 { font-size: 2rem; font-weight: 900; margin-bottom: 1rem; }
-    .mission p {
-      color: var(--gray);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.8;
-      font-size: 1rem;
+    .mission p { color: var(--gray); max-width: 680px; margin: 0 auto; line-height: 1.9; font-size: 1.05rem; }
+    .mission p strong { color: var(--blue); }
+
+    /* ── BLOG PREVIEW ── */
+    .blog-preview {
+      padding: 5rem 2rem;
+      background: var(--light);
+      text-align: center;
     }
-    .mission p strong { color: var(--green); }
+    .blog-preview h2 { font-size: 2rem; font-weight: 900; margin-bottom: 0.5rem; }
+    .blog-preview > p { color: var(--gray); margin-bottom: 3rem; }
+    .blog-cards {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto 2.5rem;
+    }
+    .blog-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      flex: 1; min-width: 280px; max-width: 300px;
+      box-shadow: 0 2px 20px rgba(26,86,219,0.08);
+      text-align: left;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,86,219,0.15); }
+    .blog-card img { width: 100%; height: 180px; object-fit: cover; }
+    .blog-card-body { padding: 1.5rem; }
+    .blog-tag { font-size: 0.72rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; }
+    .blog-card h3 { font-size: 1rem; font-weight: 800; margin: 0.5rem 0 0.6rem; line-height: 1.4; }
+    .blog-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+    .read-more { color: var(--blue); font-weight: 700; font-size: 0.85rem; margin-top: 1rem; display: inline-block; }
+    .blog-preview .view-all-btn {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem 2.2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .blog-preview .view-all-btn:hover { background: var(--blue-dark); }
 
     /* ── FOOTER ── */
     footer {
       background: var(--dark);
-      color: #4a7060;
+      color: #4a6a9a;
       text-align: center;
       padding: 2rem;
       font-size: 0.85rem;
     }
-    footer span { color: var(--gold); }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer span { color: var(--accent); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      /* Nav: hide text links, keep logo + CTA */
+      .nav-links a:not(.nav-cta) { display: none; }
+      nav { padding: 1rem 1.2rem; }
+      nav a.nav-cta { font-size: 0.8rem; padding: 0.55rem 1rem; }
+
+      /* Urgent banner */
+      .urgent-banner { font-size: 0.78rem; padding: 0.6rem 0.8rem; }
+
+      /* Hero */
+      .hero { padding: 3.5rem 1.2rem 3rem; }
+      .hero p { font-size: 1rem; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .hero-cta { width: 100%; max-width: 320px; text-align: center; padding: 0.9rem 1.5rem; }
+      .trust-bar { gap: 0.8rem; padding: 1.2rem 1rem 0; }
+      .trust-item { font-size: 0.75rem; }
+
+      /* Story strip */
+      .story-strip { margin: 1.5rem 1.2rem; padding: 1.4rem 1.2rem; font-size: 0.95rem; }
+
+      /* Impact */
+      .impact { gap: 1.5rem; padding: 2rem 1rem; }
+      .impact-num { font-size: 2.2rem; }
+
+      /* How */
+      .how { padding: 3rem 1.2rem; }
+      .how h2 { font-size: 1.7rem; margin-bottom: 2rem; }
+      .steps { flex-direction: column; align-items: center; }
+      .step { max-width: 100%; width: 100%; }
+
+      /* Emotion section */
+      .emotion-section { padding: 3rem 1.2rem; }
+      .emotion-section h2 { font-size: 1.7rem; }
+      .emotion-cards { flex-direction: column; align-items: center; }
+      .emotion-card { max-width: 100%; width: 100%; }
+
+      /* Trust */
+      .trust-section { padding: 3rem 1.2rem; }
+      .trust-cards { flex-direction: column; align-items: center; }
+      .trust-card { max-width: 100%; width: 100%; }
+
+      /* What we take */
+      .what { padding: 3rem 1.2rem; }
+      .what h2 { font-size: 1.6rem; }
+      .item-chip { font-size: 0.82rem; padding: 0.5rem 1rem; }
+
+      /* Gallery */
+      .gallery-section { padding: 3rem 1.2rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item.tall { grid-row: span 1; }
+
+      /* Form */
+      .form-section { padding: 3rem 1.2rem; }
+      .form-section h2 { font-size: 1.6rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .submit-btn { font-size: 0.95rem; }
+
+      /* Blog preview */
+      .blog-preview { padding: 3rem 1.2rem; }
+      .blog-cards { flex-direction: column; align-items: center; }
+      .blog-card { max-width: 100%; width: 100%; }
+
+      /* Mission */
+      .mission { padding: 3rem 1.2rem; }
+      .mission h2 { font-size: 1.6rem; }
+
+      /* Section headings */
+      .trust-section h2,
+      .how h2,
+      .gallery-section h2 { font-size: 1.6rem; }
+    }
+
+    @media (max-width: 400px) {
+      .hero h1 { font-size: 1.9rem; }
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
+<!-- URGENT BANNER -->
+<div class="urgent-banner">
+  🚨 Children in conflict zones need your help right now. <a href="#schedule">Donate a device today →</a>
+</div>
+
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">
-    <div class="logo-icon">♻️</div>
-    <div class="logo-text">Tru Help <span>PC</span></div>
+    <div class="logo-icon">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="42" height="42" rx="10" fill="#1a56db"/>
+        <path d="M21 8 L32 13 L32 22 C32 28 27 33 21 35 C15 33 10 28 10 22 L10 13 Z" fill="white" opacity="0.15"/>
+        <path d="M21 10 L30 14.5 L30 22 C30 27 26 31.5 21 33 C16 31.5 12 27 12 22 L12 14.5 Z" fill="white" opacity="0.9"/>
+        <path d="M21 27 C21 27 14 22 14 18 C14 15.8 15.8 14 18 14 C19.3 14 20.5 14.7 21 15.7 C21.5 14.7 22.7 14 24 14 C26.2 14 28 15.8 28 18 C28 22 21 27 21 27Z" fill="#1a56db"/>
+      </svg>
+    </div>
+    <div class="logo-text">TruHelp<span>PC</span></div>
   </a>
-  <a href="#schedule" class="nav-cta">Schedule Pickup →</a>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="blog.html">Stories</a>
+    <a href="#schedule" class="nav-cta">Schedule Free Pickup →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">San Diego's #1 Free Computer Recycling</div>
-  <h1>Give Your Old Device.<br/><span>Change a Life.</span></h1>
-  <p>We pick up your old computers, phones, and electronics — for free. We refurbish them and send them to kids in Africa who need them most.</p>
-  <a href="#schedule" class="hero-cta">Schedule Free Pickup →</a>
+  <div class="hero-badge">🌍 San Diego's Trusted Computer Recycling</div>
+  <h1>That Dusty Laptop<br/>Could Be <span>a Child's Entire World.</span></h1>
+  <p>While you scroll past it in your closet, a child in a war-torn region is dreaming of the opportunity your old device could give them. We pick it up for free. You change a life forever.</p>
+  <div class="hero-btns">
+    <a href="#schedule" class="hero-cta">Schedule Free Pickup →</a>
+    <a href="blog.html" class="hero-cta outline">Read Their Stories</a>
+  </div>
+  <div class="trust-bar">
+    <div class="trust-item"><span>✅</span> 100% Free Pickup</div>
+    <div class="trust-item"><span>🔒</span> Secure Data Wipe</div>
+    <div class="trust-item"><span>🕊️</span> Reaches Conflict Zones</div>
+    <div class="trust-item"><span>⚡</span> Same-Week Pickup</div>
+  </div>
 </section>
+
+<!-- STORY STRIP -->
+<div class="story-strip">
+  <strong>"Right now, children in the Democratic Republic of Congo are living through active war.</strong> Schools are destroyed. Families are displaced. And yet — the kids still want to learn. They still have hope. Your old computer, sitting unused in your home, is the bridge between where they are and where they could go. <em>One device. One life. Changed forever.</em>"
+</div>
 
 <!-- IMPACT -->
 <section class="impact">
   <div class="impact-item">
-    <span class="impact-num" data-target="0" id="count1">0</span>
+    <span class="impact-num" id="count1">0</span>
     <div class="impact-label">Devices Collected</div>
   </div>
   <div class="impact-item">
-    <span class="impact-num" data-target="0" id="count2">0</span>
-    <div class="impact-label">Kids Helped</div>
+    <span class="impact-num" id="count2">0</span>
+    <div class="impact-label">Kids Reached</div>
   </div>
   <div class="impact-item">
-    <span class="impact-num" data-target="0" id="count3">0</span>
+    <span class="impact-num" id="count3">0</span>
     <div class="impact-label">Pickups Completed</div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="how">
-  <div class="section-tag">Simple Process</div>
-  <h2>How It Works</h2>
+<section class="how" id="how">
+  <div class="section-tag">Simple 3-Step Process</div>
+  <h2>You Make It Effortless. We Make It Matter.</h2>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
-      <h3>Submit Your Items</h3>
-      <p>Fill out the form below. Tell us what you have, upload photos, and pick your preferred date.</p>
+      <h3>Tell Us What You Have</h3>
+      <p>Fill out our quick form. Upload a photo. Pick a day that works for you. Takes less than 2 minutes.</p>
     </div>
     <div class="step">
       <div class="step-num">2</div>
-      <h3>We Come to You</h3>
-      <p>Our team arrives at your location in San Diego County and picks everything up — completely free.</p>
+      <h3>We Come to Your Door</h3>
+      <p>Our team arrives anywhere in San Diego County — no charge, no hassle. We carry it all out for you.</p>
     </div>
     <div class="step">
       <div class="step-num">3</div>
-      <h3>We Make It Count</h3>
-      <p>Devices are refurbished and resold or shipped to communities in Africa. Your trash becomes someone's treasure.</p>
+      <h3>It Reaches Someone Who Needs It</h3>
+      <p>Every device is securely wiped, refurbished, and sent to children in communities facing conflict and hardship worldwide.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EMOTIONAL TESTIMONIALS -->
+<section class="emotion-section">
+  <div class="section-tag">Why It Matters</div>
+  <h2>These Aren't Just Devices.<br/><span>They're Doorways.</span></h2>
+  <p>When conflict destroys everything a community has built — a refurbished laptop doesn't just bring technology. It brings dignity, hope, and a future. Here's what that looks like in real life.</p>
+  <div class="emotion-cards">
+    <div class="emotion-card">
+      <div class="quote">💬</div>
+      <p>"Before we got the computers, the children had nothing to work with. Now they come to school early just to practice. They're learning to type, to search, to dream bigger than this village."</p>
+      <span class="attr">— Teacher, Eastern Congo</span>
+    </div>
+    <div class="emotion-card">
+      <div class="quote">💬</div>
+      <p>"My daughter told me she wants to be an engineer. I didn't know how to respond — there is no electricity some days. But now she has a laptop and she is coding. I cried."</p>
+      <span class="attr">— Parent, Conflict-Affected Region</span>
+    </div>
+    <div class="emotion-card">
+      <div class="quote">💬</div>
+      <p>"We received 12 computers. Within weeks, children who had never seen a screen before were learning. That's the miracle that came from someone's old machine in America."</p>
+      <span class="attr">— Community Leader, DRC</span>
+    </div>
+  </div>
+  <a href="#schedule" class="hero-cta" style="background: var(--accent); color: var(--dark);">Be the Reason Someone's Life Changes →</a>
+</section>
+
+<!-- TRUST -->
+<section class="trust-section">
+  <div class="section-tag">Why People Trust Us</div>
+  <h2>We Do It Right</h2>
+  <div class="trust-cards">
+    <div class="trust-card">
+      <div class="icon">🔒</div>
+      <h4>Data Security</h4>
+      <p>Every device is fully wiped before refurbishing or donation. Your data never leaves with the device.</p>
+    </div>
+    <div class="trust-card">
+      <div class="icon">🚚</div>
+      <h4>Free Pickup</h4>
+      <p>No hidden fees. We come to you anywhere in San Diego County.</p>
+    </div>
+    <div class="trust-card">
+      <div class="icon">🕊️</div>
+      <h4>Real Impact</h4>
+      <p>Devices reach children in conflict zones and underserved communities who have never had access to technology.</p>
+    </div>
+    <div class="trust-card">
+      <div class="icon">⚡</div>
+      <h4>Fast Service</h4>
+      <p>Most pickups scheduled within 1–3 business days. Same-week service available.</p>
     </div>
   </div>
 </section>
@@ -423,68 +736,110 @@
   </div>
 </section>
 
-<!-- SCHEDULE FORM -->
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="section-tag">Real Impact</div>
+  <h2>Devices Collected. Lives Changed.</h2>
+  <p>Every photo here represents a moment where someone's donation became someone else's future.</p>
+  <div class="gallery-grid">
+    <div class="gallery-item tall">
+      <img src="images/boy-laptop-classroom.jpg" alt="Young Congolese boy smiling at laptop in classroom"/>
+      <div class="gallery-overlay">First Time on a Computer — Congo</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1627423895015-4db87342a410?w=600&q=80" alt="Children in African classroom"/>
+      <div class="gallery-overlay">Kids Showing Up to Learn Every Day</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1666281269793-da06484657e8?w=600&q=80" alt="Children in classroom Africa"/>
+      <div class="gallery-overlay">Education Changes Everything</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1632215865645-3efa9af21424?w=600&q=80" alt="African classroom students"/>
+      <div class="gallery-overlay">Powered by Your Generosity</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1583951290243-970177c6277d?w=600&q=80" alt="Smiling African boy"/>
+      <div class="gallery-overlay">Every Child Deserves a Chance</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="blog-preview">
+  <div class="section-tag">Stories of Impact</div>
+  <h2>The Humans Behind the Hardware</h2>
+  <p>Read the stories of the lives you're helping to change — one device at a time.</p>
+  <div class="blog-cards">
+    <a href="blog.html#amani" class="blog-card">
+      <img src="images/boy-laptop-classroom.jpg" alt="Child learning on laptop"/>
+      <div class="blog-card-body">
+        <div class="blog-tag">🕊️ Congo · Impact Story</div>
+        <h3>The Boy Who Typed His Way Out of War</h3>
+        <p>Amani had never seen a computer before. Six months later, he was teaching his entire village how to use one.</p>
+        <span class="read-more">Read Story →</span>
+      </div>
+    </a>
+    <a href="blog.html#grace" class="blog-card">
+      <img src="https://images.unsplash.com/photo-1627423895015-4db87342a410?w=600&q=80" alt="Children in classroom"/>
+      <div class="blog-card-body">
+        <div class="blog-tag">💙 Community · Education</div>
+        <h3>How a Donated Laptop Became a Teacher for 40 Kids</h3>
+        <p>One laptop. One determined teacher. And 40 students who now believe the future belongs to them too.</p>
+        <span class="read-more">Read Story →</span>
+      </div>
+    </a>
+    <a href="blog.html#hope" class="blog-card">
+      <img src="https://images.unsplash.com/photo-1666281269793-da06484657e8?w=600&q=80" alt="African children hopeful"/>
+      <div class="blog-card-body">
+        <div class="blog-tag">🌱 Origin Story · San Diego</div>
+        <h3>Why We Started TruHelp PC — and What Drives Us Every Day</h3>
+        <p>The moment that made us realize that America's "junk" is the world's greatest gift.</p>
+        <span class="read-more">Read Story →</span>
+      </div>
+    </a>
+  </div>
+  <a href="blog.html" class="view-all-btn">Read All Stories →</a>
+</section>
+
+<!-- FORM -->
 <section class="form-section" id="schedule">
-  <div class="section-tag" style="text-align:center">Free Pickup Request</div>
-  <h2>Schedule Your Free Pickup</h2>
-  <p>Fill out the form below and we'll contact you within 24 hours to confirm.</p>
+  <div class="section-tag">Free Pickup Request</div>
+  <h2>Your Old Device Has One More Gift to Give</h2>
+  <p>Fill out the form and we'll contact you within 24 hours to confirm your pickup. It costs you nothing. It means everything to them.</p>
 
   <form id="pickupForm">
     <div class="form-row">
-      <div>
-        <label>First Name *</label>
-        <input type="text" name="firstName" placeholder="John" required/>
-      </div>
-      <div>
-        <label>Last Name *</label>
-        <input type="text" name="lastName" placeholder="Doe" required/>
-      </div>
+      <div><label>First Name *</label><input type="text" placeholder="John" required/></div>
+      <div><label>Last Name *</label><input type="text" placeholder="Doe" required/></div>
     </div>
-
     <div class="form-row">
-      <div>
-        <label>Phone Number *</label>
-        <input type="tel" name="phone" placeholder="(619) 000-0000" required/>
-      </div>
-      <div>
-        <label>Email Address *</label>
-        <input type="email" name="email" placeholder="john@email.com" required/>
-      </div>
+      <div><label>Phone Number *</label><input type="tel" placeholder="(619) 000-0000" required/></div>
+      <div><label>Email Address *</label><input type="email" placeholder="john@email.com" required/></div>
     </div>
-
-    <div>
-      <label>Street Address *</label>
-      <input type="text" name="address" placeholder="123 Main St" required/>
-    </div>
-
+    <div><label>Street Address *</label><input type="text" placeholder="123 Main St" required/></div>
     <div class="form-row">
-      <div>
-        <label>City *</label>
-        <input type="text" name="city" placeholder="El Cajon" required/>
-      </div>
-      <div>
-        <label>ZIP Code *</label>
-        <input type="text" name="zip" placeholder="92020" required/>
-      </div>
+      <div><label>City *</label><input type="text" placeholder="El Cajon" required/></div>
+      <div><label>ZIP Code *</label><input type="text" placeholder="92020" required/></div>
     </div>
 
     <div>
       <label>What items do you have? (check all that apply)</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" name="items" value="laptop"/> 💻 Laptop</label>
-        <label><input type="checkbox" name="items" value="desktop"/> 🖥️ Desktop</label>
-        <label><input type="checkbox" name="items" value="phone"/> 📱 Phone</label>
-        <label><input type="checkbox" name="items" value="tablet"/> 📟 Tablet</label>
-        <label><input type="checkbox" name="items" value="monitor"/> 📺 Monitor</label>
-        <label><input type="checkbox" name="items" value="printer"/> 🖨️ Printer</label>
-        <label><input type="checkbox" name="items" value="console"/> 🎮 Console</label>
-        <label><input type="checkbox" name="items" value="other"/> 🔌 Other</label>
+        <label><input type="checkbox"/> 💻 Laptop</label>
+        <label><input type="checkbox"/> 🖥️ Desktop</label>
+        <label><input type="checkbox"/> 📱 Phone</label>
+        <label><input type="checkbox"/> 📟 Tablet</label>
+        <label><input type="checkbox"/> 📺 Monitor</label>
+        <label><input type="checkbox"/> 🖨️ Printer</label>
+        <label><input type="checkbox"/> 🎮 Console</label>
+        <label><input type="checkbox"/> 🔌 Other</label>
       </div>
     </div>
 
     <div>
       <label>Approximate Quantity</label>
-      <select name="quantity">
+      <select>
         <option value="">Select quantity...</option>
         <option>1 - 3 items</option>
         <option>4 - 10 items</option>
@@ -494,13 +849,10 @@
     </div>
 
     <div class="form-row">
-      <div>
-        <label>Preferred Pickup Date *</label>
-        <input type="date" name="date" required/>
-      </div>
+      <div><label>Preferred Pickup Date *</label><input type="date" required/></div>
       <div>
         <label>Preferred Time</label>
-        <select name="time">
+        <select>
           <option value="">Select time...</option>
           <option>Morning (8am - 12pm)</option>
           <option>Afternoon (12pm - 4pm)</option>
@@ -521,46 +873,43 @@
 
     <div>
       <label>Additional Notes</label>
-      <textarea name="notes" placeholder="Any special instructions? Heavy items? Access codes? Let us know..."></textarea>
+      <textarea placeholder="Any special instructions? Heavy items? Gated community? Let us know..."></textarea>
     </div>
 
-    <button type="submit" class="submit-btn">🚀 Request Free Pickup</button>
+    <button type="submit" class="submit-btn">💙 Donate My Device — Change a Life</button>
     <div class="success-msg" id="successMsg">
-      ✅ Request received! We'll call or text you within 24 hours to confirm your pickup.
+      ✅ Thank you! You've just taken the first step toward changing someone's life. We'll call or text you within 24 hours to confirm your pickup.
     </div>
   </form>
 </section>
 
 <!-- MISSION -->
 <section class="mission">
-  <div class="section-tag">Our Mission</div>
-  <h2>More Than Recycling</h2>
+  <div class="section-tag">Our Story</div>
+  <h2>More Than Recycling. It's Humanity.</h2>
   <p>
-    Tru Help PC was founded on one belief: <strong>technology should reach everyone</strong>. Every device you donate gets a second life — either refurbished and sold locally, or shipped to students and families in Africa who have never had access to a computer. <strong>Your old device could be someone's entire future.</strong>
+    TruHelpPC was built on a simple truth: <strong>technology is not a luxury — it's a lifeline.</strong> While millions of devices collect dust in American homes, children in conflict-torn communities around the world are being left behind. We bridge that gap. Every device you donate gets securely wiped, lovingly refurbished, and placed in the hands of someone who needs it most. <strong>Your old device could be the reason a child chooses education over despair.</strong>
   </p>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 <span>Tru Help PC</span> — San Diego, CA · El Cajon, CA · <a href="mailto:info@truehelppc.com" style="color:var(--gold)">info@truehelppc.com</a></p>
-  <p style="margin-top:0.5rem">Recycling devices. Rebuilding lives. 🌍</p>
+  <p>© 2025 <span>TruHelpPC</span> — Serving All of San Diego County · El Cajon, CA</p>
+  <p style="margin-top:0.5rem"><a href="mailto:info@truehelppc.com">info@truehelppc.com</a> · Recycling devices. Rebuilding lives. 🌍</p>
+  <p style="margin-top:0.5rem"><a href="blog.html">Read Our Stories →</a></p>
 </footer>
 
 <script>
-  // Set min date on date picker to tomorrow
   const dateInput = document.querySelector('input[type="date"]');
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   dateInput.min = tomorrow.toISOString().split('T')[0];
 
-  // File upload handler
   function handleFiles(input) {
     const list = document.getElementById('file-list');
-    const files = Array.from(input.files);
-    list.innerHTML = files.map(f => `✅ ${f.name}`).join('<br/>');
+    list.innerHTML = Array.from(input.files).map(f => `✅ ${f.name}`).join('<br/>');
   }
 
-  // Form submit
   document.getElementById('pickupForm').addEventListener('submit', function(e) {
     e.preventDefault();
     document.getElementById('successMsg').style.display = 'block';
@@ -569,19 +918,16 @@
     window.scrollTo({ top: document.getElementById('successMsg').offsetTop, behavior: 'smooth' });
   });
 
-  // Animate impact counters (starts at 0 — you update the targets as you grow)
   function animateCounter(el, target) {
     let current = 0;
-    const step = Math.max(1, Math.floor(target / 60));
+    const step = Math.max(1, Math.floor(target / 80));
     const timer = setInterval(() => {
       current = Math.min(current + step, target);
-      el.textContent = current;
+      el.textContent = current.toLocaleString();
       if (current >= target) clearInterval(timer);
-    }, 30);
+    }, 20);
   }
-
-  // When you get real numbers, update these:
-  const targets = [0, 0, 0]; // [devices, kids, pickups]
+  const targets = [3000, 2000, 300];
   ['count1','count2','count3'].forEach((id, i) => {
     animateCounter(document.getElementById(id), targets[i]);
   });
