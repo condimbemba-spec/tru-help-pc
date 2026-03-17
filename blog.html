@@ -3,284 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stories of Impact — Tru Help PC</title>
+  <title>Condi's Story — TruHelp PC</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --blue:     #1a56db;
-      --blue-dark:#1035a0;
-      --sky:      #e8f0fe;
-      --accent:   #00c896;
-      --dark:     #0d1829;
-      --light:    #f0f5ff;
-      --white:    #ffffff;
-      --gray:     #6b7280;
-      --border:   #c7d9ff;
-      --red:      #e63946;
+      --blue: #1a56db; --blue-dark: #1035a0; --sky: #e8f0fe;
+      --accent: #00c896; --dark: #0d1829; --light: #f0f5ff;
+      --white: #ffffff; --gray: #6b7280; --border: #c7d9ff;
     }
-
     body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); }
 
-    /* NAV */
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(26,86,219,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 2rem; background: var(--white); border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(26,86,219,0.08);
     }
     .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
     .logo-icon svg { width: 42px; height: 42px; }
     .logo-text { font-size: 1.3rem; font-weight: 900; color: var(--dark); letter-spacing: -0.5px; }
     .logo-text span { color: var(--blue); }
     .nav-links { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links a { color: var(--dark); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a { color: var(--dark); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
     .nav-links a:hover { color: var(--blue); }
     nav a.nav-cta {
       background: var(--blue); color: var(--white); font-weight: 700;
-      padding: 0.65rem 1.4rem; border-radius: 8px; text-decoration: none;
-      font-size: 0.9rem; transition: background 0.2s;
+      padding: 0.65rem 1.4rem; border-radius: 8px; text-decoration: none; font-size: 0.9rem;
     }
     nav a.nav-cta:hover { background: var(--blue-dark); }
 
-    /* BLOG HERO */
-    .blog-hero {
+    .story-hero {
       background: linear-gradient(135deg, var(--dark) 0%, #0a2060 100%);
-      color: var(--white);
-      padding: 5rem 2rem 4rem;
-      text-align: center;
+      color: var(--white); padding: 5rem 2rem 4rem; text-align: center;
     }
     .section-tag {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
+      color: var(--accent); font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.8rem;
     }
-    .blog-hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      margin-bottom: 1rem;
+    .story-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; margin-bottom: 1rem; line-height: 1.2;
     }
-    .blog-hero h1 span { color: var(--accent); }
-    .blog-hero p { color: #8faed6; max-width: 560px; margin: 0 auto; line-height: 1.8; }
+    .story-hero h1 span { color: var(--accent); }
+    .story-hero p { color: #8faed6; max-width: 560px; margin: 0 auto; line-height: 1.8; font-size: 1.05rem; }
 
-    /* FEATURED ARTICLES */
-    .articles-container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 4rem 2rem 6rem;
-    }
+    .story-container { max-width: 760px; margin: 0 auto; padding: 4rem 2rem 6rem; }
 
-    /* ARTICLE */
-    .article {
-      margin-bottom: 6rem;
-      scroll-margin-top: 100px;
+    .founder-header {
+      display: flex; gap: 2rem; align-items: center; margin-bottom: 3rem;
+      flex-wrap: wrap; justify-content: center;
     }
-    .article-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
+    .founder-header img {
+      width: 200px; height: 250px; object-fit: cover; border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
     }
-    .article-tag {
-      background: var(--sky);
-      color: var(--blue);
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.3rem 0.8rem;
-      border-radius: 50px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .article-date { color: var(--gray); font-size: 0.82rem; }
-    .article-read { color: var(--gray); font-size: 0.82rem; }
+    .founder-header .info { text-align: left; }
+    .founder-header .info h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 0.3rem; }
+    .founder-header .info p { color: var(--gray); font-size: 0.95rem; line-height: 1.6; }
 
-    .article-hero-img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      border-radius: 20px;
-      margin-bottom: 2rem;
-      display: block;
+    .story-body {
+      font-family: 'Merriweather', serif; font-size: 1.05rem;
+      line-height: 2; color: #2a3545;
+    }
+    .story-body p { margin-bottom: 1.5rem; }
+    .story-body strong { color: var(--dark); }
+    .story-body em { color: var(--blue); }
+    .story-body hr {
+      border: none; text-align: center; margin: 2.5rem 0;
+      font-size: 1.2rem; color: var(--border);
+    }
+    .story-body hr::after { content: '• • •'; }
+
+    .pullquote {
+      border-left: 5px solid var(--accent); padding: 1.2rem 1.5rem;
+      margin: 2.5rem 0; background: var(--light); border-radius: 0 12px 12px 0;
+      font-size: 1.15rem; font-style: italic; color: var(--dark); line-height: 1.8;
     }
 
-    .article h2 {
-      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-weight: 900;
-      line-height: 1.2;
-      margin-bottom: 0.8rem;
-    }
-    .article .subtitle {
-      font-size: 1.1rem;
-      color: var(--gray);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-      font-style: italic;
-    }
-
-    .article-body {
-      font-family: 'Merriweather', serif;
-      font-size: 1.05rem;
-      line-height: 1.95;
-      color: #2a3545;
-    }
-    .article-body p { margin-bottom: 1.5rem; }
-    .article-body p:last-child { margin-bottom: 0; }
-    .article-body strong { color: var(--dark); font-weight: 700; }
-    .article-body em { color: var(--blue); font-style: italic; }
-
-    .article-pullquote {
-      border-left: 5px solid var(--accent);
-      padding: 1.2rem 1.5rem;
-      margin: 2.5rem 0;
-      background: var(--light);
-      border-radius: 0 12px 12px 0;
-      font-size: 1.2rem;
-      font-style: italic;
-      color: var(--dark);
-      line-height: 1.7;
-      font-family: 'Merriweather', serif;
-    }
-
-    .article-img-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 2.5rem 0;
-    }
-    .article-img-pair img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-    @media (max-width: 560px) {
-      .article-img-pair { grid-template-columns: 1fr; }
-      .article-hero-img { height: 240px; }
-    }
-
-    .article-divider {
-      border: none;
-      border-top: 2px solid var(--border);
-      margin: 5rem 0 0;
-    }
-
-    /* DONATE CTA IN ARTICLE */
-    .article-cta {
+    .story-cta {
       background: linear-gradient(135deg, var(--dark), #0a2060);
+      color: white; border-radius: 20px; padding: 2.5rem 2rem;
+      text-align: center; margin: 3rem 0;
+    }
+    .story-cta h3 { font-size: 1.4rem; font-weight: 900; margin-bottom: 0.7rem; }
+    .story-cta p { color: #8faed6; margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .story-cta a {
+      display: inline-block; background: var(--accent); color: var(--dark);
+      font-weight: 800; padding: 0.9rem 2.2rem; border-radius: 10px;
+      text-decoration: none; margin: 0.3rem;
+    }
+    .story-cta a:hover { opacity: 0.88; }
+    .story-cta a.outline-btn {
+      background: transparent; border: 2px solid rgba(255,255,255,0.3);
       color: white;
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
-      text-align: center;
-      margin: 3rem 0;
     }
-    .article-cta h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 0.7rem; }
-    .article-cta p { color: #8faed6; margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.7; }
-    .article-cta a {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--dark);
-      font-weight: 800;
-      padding: 0.9rem 2.2rem;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .article-cta a:hover { opacity: 0.88; }
 
-    /* ALL STORIES GRID */
-    .more-stories { background: var(--light); padding: 4rem 2rem; text-align: center; }
-    .more-stories h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 2.5rem; }
-    .stories-grid {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      max-width: 900px;
-      margin: 0 auto;
+    .signature {
+      text-align: center; margin-top: 3rem; padding-top: 2rem;
+      border-top: 2px solid var(--border);
     }
-    .story-card {
-      background: var(--white);
-      border-radius: 16px;
-      overflow: hidden;
-      flex: 1; min-width: 240px; max-width: 270px;
-      box-shadow: 0 2px 20px rgba(26,86,219,0.08);
-      text-align: left;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.2s;
-    }
-    .story-card:hover { transform: translateY(-4px); }
-    .story-card img { width: 100%; height: 160px; object-fit: cover; }
-    .story-card-body { padding: 1.2rem; }
-    .story-tag { font-size: 0.7rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; }
-    .story-card h3 { font-size: 0.95rem; font-weight: 800; margin: 0.5rem 0 0.5rem; line-height: 1.4; }
-    .story-card p { font-size: 0.82rem; color: var(--gray); line-height: 1.5; }
+    .signature p { font-weight: 700; color: var(--dark); font-size: 1.1rem; }
+    .signature small { color: var(--gray); }
 
-    /* FOOTER */
     footer {
-      background: var(--dark);
-      color: #4a6a9a;
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.85rem;
+      background: var(--dark); color: #4a6a9a; text-align: center;
+      padding: 2rem; font-size: 0.85rem;
     }
     footer a { color: var(--accent); text-decoration: none; }
     footer span { color: var(--accent); }
 
-    /* ── MOBILE ── */
     @media (max-width: 768px) {
-      /* Nav */
       nav { padding: 1rem 1.2rem; }
       .nav-links a:not(.nav-cta) { display: none; }
       nav a.nav-cta { font-size: 0.8rem; padding: 0.55rem 1rem; }
-
-      /* Blog hero */
-      .blog-hero { padding: 3rem 1.2rem 2.5rem; }
-      .blog-hero h1 { font-size: 1.9rem; }
-      .blog-hero p { font-size: 0.95rem; }
-
-      /* Articles */
-      .articles-container { padding: 2.5rem 1.2rem 4rem; }
-      .article { margin-bottom: 4rem; }
-      .article h2 { font-size: 1.5rem; }
-      .article .subtitle { font-size: 1rem; }
-      .article-body { font-size: 0.97rem; }
-      .article-hero-img { height: 220px; border-radius: 12px; }
-      .article-pullquote { font-size: 1.05rem; padding: 1rem 1.1rem; }
-      .article-img-pair { grid-template-columns: 1fr; }
-      .article-img-pair img { height: 200px; }
-      .article-cta { padding: 2rem 1.2rem; }
-      .article-cta h3 { font-size: 1.2rem; }
-
-      /* More stories */
-      .more-stories { padding: 3rem 1.2rem; }
-      .more-stories h2 { font-size: 1.5rem; }
-      .stories-grid { flex-direction: column; align-items: center; }
-      .story-card { max-width: 100%; width: 100%; }
-    }
-
-    @media (max-width: 400px) {
-      .blog-hero h1 { font-size: 1.6rem; }
-      .article h2 { font-size: 1.3rem; }
+      .story-hero { padding: 3rem 1.2rem 2.5rem; }
+      .story-container { padding: 2.5rem 1.2rem 4rem; }
+      .founder-header { flex-direction: column; text-align: center; }
+      .founder-header .info { text-align: center; }
+      .story-body { font-size: 0.97rem; }
+      .story-cta { padding: 2rem 1.2rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="index-blue.html" class="logo">
+  <a href="index.html" class="logo">
     <div class="logo-icon">
       <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="42" height="42" rx="10" fill="#1a56db"/>
@@ -292,208 +139,118 @@
     <div class="logo-text">TruHelp<span>PC</span></div>
   </a>
   <div class="nav-links">
-    <a href="index-blue.html">Home</a>
-    <a href="index-blue.html#how">How It Works</a>
-    <a href="index-blue.html#schedule" class="nav-cta">Donate a Device →</a>
+    <a href="index.html">Home</a>
+    <a href="index.html#how">How It Works</a>
+    <a href="index.html#schedule" class="nav-cta">Donate a Device →</a>
   </div>
 </nav>
 
-<!-- BLOG HERO -->
-<section class="blog-hero">
-  <div class="section-tag">Stories of Impact</div>
-  <h1>The Humans <span>Behind the Hardware</span></h1>
-  <p>Every device tells a story. Here are the ones on the other end — the children, teachers, and families whose lives were changed by someone's act of generosity.</p>
+<section class="story-hero">
+  <div class="section-tag">Origin Story</div>
+  <h1>The Laptop That Only Worked<br/><span>When It Was Plugged In</span></h1>
+  <p>I grew up a refugee with nothing. Then my mom handed me a broken laptop — and everything changed. This is why I built TruHelp PC.</p>
 </section>
 
-<!-- ARTICLES -->
-<div class="articles-container">
+<div class="story-container">
 
-  <!-- ──────────── ARTICLE 1 ──────────── -->
-  <article class="article" id="amani">
-    <div class="article-meta">
-      <span class="article-tag">🕊️ Congo · Impact Story</span>
-      <span class="article-date">February 2025</span>
-      <span class="article-read">· 5 min read</span>
+  <div class="founder-header">
+    <img src="images/condi-founder.jpg" alt="Condi Mbemba, Founder of TruHelp PC"/>
+    <div class="info">
+      <h3>Condi Mbemba</h3>
+      <p>Founder & Technician, TruHelp PC<br/>Refugee. Self-taught. San Diegan.</p>
     </div>
-    <img
-      src="images/boy-laptop-classroom.jpg"
-      alt="Young Congolese boy smiling at a laptop for the first time"
-      class="article-hero-img"
-    />
-    <h2>The Boy Who Typed His Way Out of War</h2>
-    <p class="subtitle">Amani had never seen a computer before. Six months later, he was teaching his entire village how to use one.</p>
+  </div>
 
-    <div class="article-body">
-      <p>The first time Amani touched a keyboard, he pulled his hands back like it had burned him. He was eleven years old, sitting in what remained of his village's schoolroom in eastern Congo — a single-room brick structure with a rusted zinc roof, surrounded by a community still trying to heal from years of conflict. Outside, life moved cautiously. But inside that room, something new was arriving.</p>
+  <div class="story-body">
 
-      <p>The laptop had come from San Diego. Someone had cleaned out their home office, scheduled a free pickup, and handed over a machine they hadn't touched in two years. By the time it reached Amani, it had been wiped clean, charged, and loaded with educational software. <strong>It still had a small scratch on the corner of the lid.</strong> Amani would come to think of that scratch as its scar — proof that the machine had a life before his.</p>
+    <p>There was no ceremony. No bow. No big moment.</p>
 
-      <div class="article-pullquote">
-        "He sat down and just stared at it for five minutes. Then he asked me: 'Teacher, does it know my name?' I told him — it can learn anything you teach it. He smiled like I'd handed him the whole world."
-        <br/><br/>— His teacher, Mapendo
-      </div>
+    <p>My mom just set it down in front of me one evening after I passed grade 10. An old laptop. Secondhand, scratched up, barely holding together. The battery was completely dead — it only worked if you kept it plugged into the wall. The moment you unplugged it, it died.</p>
 
-      <p>Amani learned to type within three weeks. Not because of any special program — but because he refused to stop. He would arrive before school started and leave after every other child had gone home. He typed out his own name, his village's name, the names of rivers and mountains he'd only heard his grandmother describe.</p>
+    <p><strong>I didn't care.</strong></p>
 
-      <p>By month two, he was helping younger children learn the alphabet on-screen. By month four, the community had started calling the small room "Amani's School." <strong>He was eleven years old and he had become a teacher.</strong></p>
+    <p>I stayed up that night. And the night after that. Teaching myself how it worked. Clicking through everything. Learning what computers could do, what I could do with them. I was 16 years old, growing up in Namibia, and that half-broken machine cracked open a door I didn't know existed.</p>
 
-      <div class="article-img-pair">
-        <img src="https://images.unsplash.com/photo-1632215865645-3efa9af21424?w=500&q=80" alt="Students in classroom"/>
-        <img src="https://images.unsplash.com/photo-1627423896085-e3e694d88e40?w=500&q=80" alt="Children learning together"/>
-      </div>
+    <hr/>
 
-      <p>When we last spoke with Mapendo, she told us Amani has one dream now: to build software that helps people in conflict zones communicate safely. He doesn't know what programming languages are yet. But he knows what he wants to build — and <em>that's exactly where every great engineer starts.</em></p>
+    <p>What my mom didn't say that night — what I only understood much later — was how much that gift cost her.</p>
 
-      <p>The laptop that got him there? It cost the donor nothing. It took ten minutes to schedule the pickup. And it gave one boy in eastern Congo the spark that no amount of conflict could extinguish.</p>
+    <p>My family were refugees. We had fled our home in the Democratic Republic of Congo in 2002 and made it to Namibia with almost nothing. For years, we rebuilt slowly, quietly, with the kind of resilience that doesn't announce itself. We didn't have much. But somehow, my mom found a way to hand her son a window to the world.</p>
+
+    <div class="pullquote">
+      I never forgot that.
     </div>
 
-    <div class="article-cta">
-      <h3>Your Old Device Could Be Someone's Amani Moment</h3>
-      <p>It costs you nothing. It takes ten minutes. And somewhere out there, a child is waiting for exactly what you're about to give away.</p>
-      <a href="index-blue.html#schedule">Schedule a Free Pickup →</a>
-    </div>
-  </article>
+    <hr/>
 
-  <hr class="article-divider"/>
+    <p>In 2018, we got word that changed everything. We had been approved for a refugee asylum program — we were going to America.</p>
 
-  <!-- ──────────── ARTICLE 2 ──────────── -->
-  <article class="article" id="grace" style="margin-top: 5rem;">
-    <div class="article-meta">
-      <span class="article-tag">💙 Community · Education</span>
-      <span class="article-date">January 2025</span>
-      <span class="article-read">· 6 min read</span>
-    </div>
-    <img
-      src="https://images.unsplash.com/photo-1627423895015-4db87342a410?w=900&q=85"
-      alt="Children gathered in a classroom in Africa"
-      class="article-hero-img"
-    />
-    <h2>How One Donated Laptop Became a Classroom for 40 Kids</h2>
-    <p class="subtitle">One laptop. One determined teacher named Grace. And 40 students who now believe the future belongs to them too.</p>
+    <p><strong>San Diego.</strong></p>
 
-    <div class="article-body">
-      <p>Grace Kabila has been a teacher for nineteen years. She has taught through food shortages, through displacement, through nights when she wasn't sure there would be a school left standing in the morning. She has never stopped showing up. <strong>But until last year, she had never had a computer in her classroom.</strong></p>
+    <p>I arrived in a new country with a new language to navigate, a new system to figure out, and the same quiet determination I'd always had. I was sent to Urban Corps to earn an American high school diploma. To keep money coming in, I worked nights — cleaning Petco Park after games, long after the crowds had gone home and the stadium fell silent.</p>
 
-      <p>When the shipment arrived — a box of refurbished laptops from TruHelp PC — Grace told us she stood in the middle of the schoolyard and cried. Not out of sadness. Out of the particular kind of relief that comes when you've been fighting for something for so long that you almost stopped believing it could happen.</p>
+    <p>I showed up. Every time.</p>
 
-      <div class="article-pullquote">
-        "I told my students: this is proof that there are people in this world who see you. Who know you exist. And who chose to act."
-        <br/><br/>— Grace Kabila, Teacher, DRC
-      </div>
+    <hr/>
 
-      <p>The laptop with the cracked hinge became the most popular one. The children fought gently over who got to use it — not because it was the best machine, but because it felt the most lived-in. Like it had been somewhere, done something, and now arrived with stories to share.</p>
+    <p>Because I worked in recycling, a company called Enviro Green came in one day to run a short course on fixing computers.</p>
 
-      <p>Grace developed a rotation system. Every morning, four students would use the laptops for 45 minutes. They would type, watch educational videos, and take turns reading to each other what they found on screen. In a village with no library and no internet café, <em>this single machine opened a door to the entire world.</em></p>
+    <p><em>I lit up.</em></p>
 
-      <div class="article-img-pair">
-        <img src="https://images.unsplash.com/photo-1666281269793-da06484657e8?w=500&q=80" alt="Children in African classroom"/>
-        <img src="https://images.unsplash.com/photo-1632215863153-0dae7657d0a9?w=500&q=80" alt="Students learning"/>
-      </div>
+    <p>Of everyone in that room, I stood out. The instructor noticed. By the end of the course, I had been offered a job.</p>
 
-      <p>By the end of the school year, all 40 of Grace's students had basic computer literacy. Three of them — aged 10, 12, and 14 — had started writing short stories on the devices. One girl had typed out an entire poem about her mother and printed it at the community center in town. Her mother framed it.</p>
+    <p>I spent the next few years at Enviro Green learning everything — how to diagnose a failing hard drive, how to refurbish a device that looked completely dead and make it run like new, how the entire recycling industry worked from the inside. I was good at it. More than good. I loved it.</p>
 
-      <p><strong>One laptop. Forty kids. One teacher who refused to give up.</strong> And a donor in San Diego who had no idea any of this would happen when they scheduled their free pickup.</p>
+    <p>Then COVID hit. The business contracted. I was let go.</p>
 
-      <p>That's the thing about generosity at scale. You never see the full ripple. You just have to trust that the stone you throw will keep moving long after it leaves your hand.</p>
+    <hr/>
+
+    <p>I could have walked away from it all.</p>
+
+    <p>A lot of people would have.</p>
+
+    <p>But I kept thinking about that laptop. The one that only worked plugged in. The one my mom somehow found for me. The one that changed the direction of my life.</p>
+
+    <p><strong>And I started thinking about all the kids who hadn't gotten one yet.</strong></p>
+
+    <p>Kids in places like where I grew up. Smart kids. Curious kids. Kids who would stay up all night if someone just handed them the right tool. Kids who weren't waiting for charity — they were waiting for a chance.</p>
+
+    <hr/>
+
+    <p>So I built TruHelp PC.</p>
+
+    <p>Not because it was the safe move. Not because it made obvious business sense. Because I know something most people only imagine: <strong>that a donated device isn't just hardware.</strong></p>
+
+    <div class="pullquote">
+      It's the moment everything shifts.
     </div>
 
-    <div class="article-cta">
-      <h3>Be a Grace. Be an Amani. Be the Ripple.</h3>
-      <p>Schedule a free pickup today. We handle everything. The impact? That's entirely yours to own.</p>
-      <a href="index-blue.html#schedule">Donate Your Device →</a>
-    </div>
-  </article>
+    <p>I've lived that moment. I know what it feels like from the inside. And now every device that comes through TruHelp PC — picked up from a home in San Diego, wiped clean, brought back to life — carries that same possibility to someone waiting on the other side of the world.</p>
 
-  <hr class="article-divider"/>
+    <p><strong>Your old laptop is more than you think it is.</strong></p>
 
-  <!-- ──────────── ARTICLE 3 ──────────── -->
-  <article class="article" id="hope" style="margin-top: 5rem;">
-    <div class="article-meta">
-      <span class="article-tag">🌱 Origin Story · San Diego</span>
-      <span class="article-date">December 2024</span>
-      <span class="article-read">· 4 min read</span>
-    </div>
-    <img
-      src="https://images.unsplash.com/photo-1583951290243-970177c6277d?w=900&q=85"
-      alt="Smiling African boy full of hope"
-      class="article-hero-img"
-    />
-    <h2>Why We Started TruHelp PC — and What Drives Us Every Day</h2>
-    <p class="subtitle">The moment we realized that America's "junk" is the world's greatest gift — and why we've never looked back.</p>
+    <p>I know. I had one just like it.</p>
 
-    <div class="article-body">
-      <p>It started with a pile of old computers on a sidewalk in El Cajon.</p>
+  </div>
 
-      <p>Someone had put them out on trash day. Four laptops, two desktop towers, a box of cables and adapters. Functional machines, or close enough. They were just... done with them. And in this country, that's what we do — when something stops being useful to us, we let it go without a second thought.</p>
+  <div class="signature">
+    <p>Condi Mbemba</p>
+    <small>Founder and Technician of TruHelp PC</small>
+  </div>
 
-      <p>But standing there looking at those machines, all we could think about was a different image: <strong>a child sitting on a dirt floor, textbook in hand, trying to imagine a future that felt very far away.</strong> Kids in conflict zones who had heard of computers but never touched one. Teachers in underserved communities who were trying to prepare students for a digital world with nothing digital to work with.</p>
-
-      <div class="article-pullquote">
-        "America throws away more working technology in a week than some communities will ever see in a lifetime. That gap felt unbearable to us. So we decided to close it."
-      </div>
-
-      <p>TruHelp PC was born from that gap. We built a simple system: you hand us your old devices, we refurbish them, and we get them to the communities that need them most — including children in active conflict zones, where access to education is not just scarce but actively threatened by war.</p>
-
-      <p>The Democratic Republic of Congo is one of those places. It is a country of extraordinary beauty, extraordinary resilience, and extraordinary pain. Children there are growing up amid ongoing conflict that has displaced millions and destroyed schools and infrastructure. And yet — <em>they still come to class.</em> They still want to learn. They still dream.</p>
-
-      <div class="article-img-pair">
-        <img src="https://images.unsplash.com/photo-1632215863479-201029d93143?w=500&q=80" alt="African children at school"/>
-        <img src="https://images.unsplash.com/photo-1615477618234-c79fcdf30fe2?w=500&q=80" alt="Child with technology"/>
-      </div>
-
-      <p>Every day we do this work, we're reminded: <strong>you don't need to be rich to be generous.</strong> You don't need to travel halfway around the world to make a difference. You just need a device you no longer use and ten minutes to fill out a form.</p>
-
-      <p>We'll do the rest. We promise.</p>
-
-      <p>This is why we started TruHelp PC. And every story — every Amani, every Grace, every child who types their name for the first time and looks up with wide eyes — is why we keep going.</p>
-    </div>
-
-    <div class="article-cta">
-      <h3>Ready to Be Part of the Story?</h3>
-      <p>Join hundreds of San Diego residents who have already donated their old devices. Free pickup. Real impact. No excuses needed.</p>
-      <a href="index-blue.html#schedule">Schedule Free Pickup →</a>
-    </div>
-  </article>
+  <div class="story-cta">
+    <h3>Your Old Device Has One More Story Left</h3>
+    <p>Schedule a free pickup or support the mission financially. Either way — you're part of this now.</p>
+    <a href="index.html#schedule">Schedule Free Pickup →</a>
+    <a href="index.html#partner" class="outline-btn">Partner With Us →</a>
+  </div>
 
 </div>
 
-<!-- MORE STORIES / EXPLORE -->
-<section class="more-stories">
-  <div class="section-tag">More from TruHelp PC</div>
-  <h2>Keep Reading</h2>
-  <div class="stories-grid">
-    <a href="#amani" class="story-card">
-      <img src="images/boy-laptop-classroom.jpg" alt="Boy on laptop in classroom"/>
-      <div class="story-card-body">
-        <div class="story-tag">🕊️ Congo</div>
-        <h3>The Boy Who Typed His Way Out of War</h3>
-        <p>Amani had never touched a keyboard. Six months later, he was teaching his whole village.</p>
-      </div>
-    </a>
-    <a href="#grace" class="story-card">
-      <img src="https://images.unsplash.com/photo-1627423895015-4db87342a410?w=400&q=80" alt="Children in African classroom"/>
-      <div class="story-card-body">
-        <div class="story-tag">💙 Education</div>
-        <h3>One Laptop, 40 Students, One Teacher Who Never Quit</h3>
-        <p>Grace turned a single donation into a classroom transformation.</p>
-      </div>
-    </a>
-    <a href="#hope" class="story-card">
-      <img src="https://images.unsplash.com/photo-1583951290243-970177c6277d?w=400&q=80" alt="Smiling African boy"/>
-      <div class="story-card-body">
-        <div class="story-tag">🌱 Our Story</div>
-        <h3>Why We Started TruHelp PC</h3>
-        <p>What a pile of sidewalk laptops taught us about the world's most underrated form of generosity.</p>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <p>© 2025 <span>TruHelpPC</span> — Serving All of San Diego County · El Cajon, CA</p>
+  <p>© 2025 <span>TruHelp PC</span> — Serving All of San Diego County · El Cajon, CA</p>
   <p style="margin-top:0.5rem"><a href="mailto:info@truehelppc.com">info@truehelppc.com</a> · Recycling devices. Rebuilding lives. 🌍</p>
-  <p style="margin-top:0.5rem"><a href="index-blue.html">← Back to Home</a></p>
+  <p style="margin-top:0.5rem"><a href="index.html">← Back to Home</a></p>
 </footer>
 
 </body>
