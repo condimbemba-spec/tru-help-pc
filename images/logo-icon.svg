@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="55 45 160 105" width="160" height="105">
+  <defs>
+    <linearGradient id="infGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff" stop-opacity="0.95"/>
+      <stop offset="50%" style="stop-color:#64B5F6"/>
+      <stop offset="100%" style="stop-color:#2979FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- INFINITY ICON -->
+  <path d="M68 95 C68 72 80 57 98 57 C116 57 126 72 136 95 C146 118 156 133 174 133 C192 133 204 118 204 95 C204 72 192 57 174 57 C156 57 146 72 136 95 C126 118 116 133 98 133 C80 133 68 118 68 95Z"
+    fill="none"
+    stroke="url(#infGrad)"
+    stroke-width="8"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+
+  <!-- Laptop in left loop -->
+  <rect x="82" y="78" width="32" height="22" rx="3" fill="#2979FF" opacity="0.25"/>
+  <rect x="85" y="81" width="26" height="16" rx="2" fill="#0D1B3E" opacity="0.35"/>
+  <rect x="77" y="100" width="42" height="5" rx="2.5" fill="#2979FF" opacity="0.3"/>
+  <rect x="87" y="91" width="22" height="2.5" rx="1.2" fill="#2979FF" opacity="0.4"/>
+
+  <!-- Heart in right loop -->
+  <path d="M174 118 C174 118 156 105 156 93 C156 85.3 162.3 79 170 79 C172.6 79 174 80.6 174 80.6 C174 80.6 175.4 79 178 79 C185.7 79 192 85.3 192 93 C192 105 174 118 174 118Z"
+    fill="#2979FF"/>
+
+  <!-- Center crossover dot -->
+  <circle cx="136" cy="95" r="5" fill="#2979FF"/>
+</svg>
